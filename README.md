@@ -1,7 +1,9 @@
 Java Client for Google Maps Services
 ====================================
 
-![Build Status](https://travis-ci.org/googlemaps/google-maps-services-java.svg)&nbsp;![Maven Central Version](http://img.shields.io/maven-central/v/com.google.maps/google-maps-services.svg)&nbsp;[![Coverage Status](https://img.shields.io/coveralls/googlemaps/google-maps-services-java.svg)](https://coveralls.io/r/googlemaps/google-maps-services-java)
+[![Build Status](https://travis-ci.org/googlemaps/google-maps-services-java.svg)](https://travis-ci.org/googlemaps/google-maps-services-java)
+[![Maven Central Version](http://img.shields.io/maven-central/v/com.google.maps/google-maps-services.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.google.maps%22%20a%3A%22google-maps-services%22)
+[![Coverage Status](https://img.shields.io/coveralls/googlemaps/google-maps-services-java.svg)](https://coveralls.io/r/googlemaps/google-maps-services-java)
 
 ## Description
 
@@ -107,7 +109,7 @@ You can find the latest version at the top of this README or by searching
 
 ## Developer Documentation
 
-View the [javadoc](https://googlemaps.github.io/google-maps-services-java/v0.1.17/javadoc).
+View the [javadoc](https://googlemaps.github.io/google-maps-services-java/v0.1.18/javadoc).
 
 Additional documentation for the included web services is available at
 https://developers.google.com/maps/.
@@ -145,6 +147,8 @@ GeocodingResult[] results =  GeocodingApi.geocode(context,
     "1600 Amphitheatre Parkway Mountain View, CA 94043").await();
 System.out.println(results[0].formattedAddress);
 ```
+
+In real world scenarios, it's important to instantiate `GeoApiContext` as a static variable or inside a singleton, since it must have only one instance alive, despite the number of calls to `GeocodingApi`. Instantiating `GeoApiContext` once per request could cause too many threads alive at JVM (see [here](https://github.com/googlemaps/google-maps-services-java/issues/126)).
 
 For more usage examples, check out [the tests](src/test/java/com/google/maps/).
 
